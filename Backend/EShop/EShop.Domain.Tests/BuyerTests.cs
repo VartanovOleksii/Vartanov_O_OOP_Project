@@ -63,4 +63,12 @@ public class BuyerTests
 
         Assert.True(buyer.IsValid());
     }
+
+    [Fact]
+    public void IsValid_EmptyAddress_ReturnsFalse()
+    {
+        var buyer = TestFactory.CreateBuyer(address: "");
+
+        Assert.False(buyer.IsValid());
+    }
 }

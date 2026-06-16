@@ -95,4 +95,49 @@ public class SellerTests
 
         Assert.True(seller.IsValid());
     }
+
+    [Fact]
+    public void IsValid_EmptyAddress_ReturnsFalse()
+    {
+        var seller = TestFactory.CreateSeller(address: "");
+
+        Assert.False(seller.IsValid());
+    }
+
+    [Fact]
+    public void AddProduct_EmptyName_ThrowsException()
+    {
+        var seller = TestFactory.CreateSeller();
+
+        Assert.Throws<ArgumentException>(() => seller.AddProduct("", "desc", 10m, 5));
+    }
+
+    [Fact]
+    public void AddProduct_ZeroPrice_ThrowsException()
+    {
+        var seller = TestFactory.CreateSeller();
+
+        Assert.Throws<ArgumentException>(() => seller.AddProduct("Widget", "desc", 0m, 5));
+    }
+
+    [Fact]
+    public void UpdateStock_ProductOfAnotherSeller_ThrowsException()
+    {
+        var seller1 = TestFactory.CreateSeller(id: 1);
+        var seller2 = TestFactory.CreateSeller(id: 2);
+        seller2.AddProduct("Widget", "desc", 10m, 5);
+        int productId = seller2.Products[0].Id;
+
+        Assert.Throws<InvalidOperationException>(() => seller1.UpdateStock(productId, 10));
+    }
+
+    [Fact]
+    public void GetStatistics_NoProducts_ReturnsResult()
+    {
+        var seller = TestFactory.CreateSeller();
+
+        var stats = seller.GetStatistics();
+
+        Assert.NotNull(stats);
+    }
 }

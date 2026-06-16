@@ -87,4 +87,27 @@ public class OrderTests
 
         Assert.False(order.IsValid());
     }
+
+    [Fact]
+    public void OrderTotalPrice_CalculatesCorrectly()
+    {
+        var buyer = TestFactory.CreateBuyer(id: 1);
+        var product = TestFactory.CreateProduct(quantity: 10, price: 25m);
+
+        var order = Order.Create(buyer, product, 3);
+
+        Assert.Equal(75m, order.OrderTotalPrice);
+    }
+
+    [Fact]
+    public void OrderUnitPrice_RemainsFixed_AfterProductPriceChange()
+    {
+        var buyer = TestFactory.CreateBuyer(id: 1);
+        var product = TestFactory.CreateProduct(quantity: 10, price: 25m);
+        var order = Order.Create(buyer, product, 2);
+
+        typeof(Product).GetProperty(nameof(Product.ProductPrice))!.SetValue(product, 99m);
+
+        Assert.Equal(25m, order.OrderUnitPrice);
+    }
 }
