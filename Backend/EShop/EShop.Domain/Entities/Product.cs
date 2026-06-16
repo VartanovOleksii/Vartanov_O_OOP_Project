@@ -1,9 +1,13 @@
 ﻿using EShop.Domain.Events;
+using System.Text.Json.Serialization;
 
 namespace EShop.Domain.Entities;
 
 public class Product : Entity, IComparable<Product>
 {
+    [JsonConstructor]
+    private Product() { }
+
     public string ProductName { get; private set; } = string.Empty;
     public string ProductDescription { get; private set; } = string.Empty;
     public decimal ProductPrice { get; private set; }
