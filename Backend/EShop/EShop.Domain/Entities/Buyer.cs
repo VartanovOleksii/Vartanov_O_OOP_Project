@@ -9,11 +9,19 @@ public class Buyer : AuthorizedUser, IBuyerActions
 
     public void AddToCart(Product product, int quantity)
     {
-        throw new NotImplementedException();
+        if (quantity <= 0)
+            throw new ArgumentException("Quantity must be greater than 0.", nameof(quantity));
+
+        if (quantity > product.ProductQuantity)
+            throw new ArgumentException("Quantity exceeds available stock.", nameof(quantity));
+
+        var existing = Cart.FirstOrDefault(ci => ci.ProductId == product.Id);
+
+        if (existing != null)
+            existing.IncreaseQuantity(quantity);
+        else
+            Cart.Add(new CartItem(this, product, quantity));
     }
 
-    public List<Order> GetHistory()
-    {
-        throw new NotImplementedException();
-    }
+    public List<Order> GetHistory() => OrderHistory;
 }

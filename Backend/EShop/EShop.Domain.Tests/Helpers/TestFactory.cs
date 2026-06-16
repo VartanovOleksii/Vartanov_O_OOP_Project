@@ -43,8 +43,8 @@ internal static class TestFactory
 
     public static CartItem CreateCartItem(int quantity = 1)
     {
-        var ci = (CartItem)Activator.CreateInstance(typeof(CartItem), nonPublic: true)!;
-        typeof(CartItem).GetProperty(nameof(CartItem.CartQuantity))!.SetValue(ci, quantity);
-        return ci;
+        var buyer = CreateBuyer();
+        var product = CreateProduct(quantity: quantity);
+        return new CartItem(buyer, product, quantity);
     }
 }
