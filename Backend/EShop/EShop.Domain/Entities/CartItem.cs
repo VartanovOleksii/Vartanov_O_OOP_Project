@@ -12,6 +12,9 @@ public class CartItem : Entity
 
     public override bool IsValid()
     {
-        throw new NotImplementedException();
+        if (CartQuantity > 0)
+            return true;
+
+        return false;
     }
 }
