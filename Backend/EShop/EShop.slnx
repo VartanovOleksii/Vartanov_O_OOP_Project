@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="EShop.API/EShop.API.csproj" Id="b07d4132-4d10-49a3-81ae-24879bfde16d" />
+  <Project Path="EShop.Domain.Tests/EShop.Domain.Tests.csproj" />
   <Project Path="EShop.Domain/EShop.Domain.csproj" />
 </Solution>
