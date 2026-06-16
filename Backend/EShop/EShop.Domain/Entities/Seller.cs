@@ -24,9 +24,4 @@ public class Seller : AuthorizedUser, ISellerActions
     {
         throw new NotImplementedException();
     }
-
-    public override bool IsValid()
-    {
-        throw new NotImplementedException();
-    }
 }

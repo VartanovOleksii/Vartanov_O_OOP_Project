@@ -16,10 +16,4 @@ public class Buyer : AuthorizedUser, IBuyerActions
     {
         throw new NotImplementedException();
     }
-
-
-    public override bool IsValid()
-    {
-        throw new NotImplementedException();
-    }
 }
