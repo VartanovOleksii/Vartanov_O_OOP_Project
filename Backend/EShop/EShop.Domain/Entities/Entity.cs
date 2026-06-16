@@ -9,12 +9,21 @@ public abstract class Entity : IEquatable<Entity>
     
     public bool Equals(Entity? other)
     {
-        throw new NotImplementedException();
+        if (other == null)
+            return false;
+        
+        if (Id == other.Id)
+            return true;
+        return false;
     }
 
     public override bool Equals(object? obj)
     {
-        throw new NotImplementedException();
+        return Equals(obj as Entity);
     }
 
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Id);
+    }
 }
