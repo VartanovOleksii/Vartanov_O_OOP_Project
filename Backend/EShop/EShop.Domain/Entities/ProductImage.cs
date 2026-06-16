@@ -11,6 +11,9 @@ public class ProductImage : Entity
 
     public override bool IsValid()
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrWhiteSpace(ImagePath))
+            return false;
+
+        return true;
     }
 }
