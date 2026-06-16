@@ -17,4 +17,13 @@ public class CartItem : Entity
 
         return false;
     }
+
+    public CartItem(Buyer buyer, Product product, int quantity)
+    {
+        BuyerId = buyer.Id;
+        CartBuyer = buyer;
+        ProductId = product.Id;
+        CartProduct = product;
+        CartQuantity = quantity;
+    }
 }
