@@ -8,6 +8,9 @@ public abstract class AuthorizedUser : Entity
 
     public override bool IsValid()
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrWhiteSpace(UserAddress))
+            return false;
+
+        return true;
     }
 }
