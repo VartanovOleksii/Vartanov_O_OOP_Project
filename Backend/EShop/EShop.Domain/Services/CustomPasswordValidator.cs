@@ -6,6 +6,18 @@ public class CustomPasswordValidator<TUser> : IPasswordValidator<TUser> where TU
 {
     public Task<IdentityResult> ValidateAsync(UserManager<TUser> manager, TUser user, string? password)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(password))
+            return Task.FromResult(IdentityResult.Failed(
+                new IdentityError { Description = "Password is required." }));
+
+        if (password.Length < 8)
+            return Task.FromResult(IdentityResult.Failed(
+                new IdentityError { Description = "Password must be at least 8 characters." }));
+
+        if (password.All(char.IsDigit))
+            return Task.FromResult(IdentityResult.Failed(
+                new IdentityError { Description = "Password cannot consist only of digits." }));
+
+        return Task.FromResult(IdentityResult.Success);
     }
 }
