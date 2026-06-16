@@ -5,17 +5,12 @@ namespace EShop.Domain.Tests.Helpers;
 internal static class TestFactory
 {
     public static Product CreateProduct(
-        string name = "Test Product",
-        decimal price = 10m,
-        int quantity = 5,
-        int sellerId = 1)
+    string name = "Test Product",
+    decimal price = 10m,
+    int quantity = 5,
+    int sellerId = 1)
     {
-        var p = (Product)Activator.CreateInstance(typeof(Product), nonPublic: true)!;
-        typeof(Product).GetProperty(nameof(Product.ProductName))!.SetValue(p, name);
-        typeof(Product).GetProperty(nameof(Product.ProductPrice))!.SetValue(p, price);
-        typeof(Product).GetProperty(nameof(Product.ProductQuantity))!.SetValue(p, quantity);
-        typeof(Product).GetProperty(nameof(Product.SellerId))!.SetValue(p, sellerId);
-        return p;
+        return new Product(name, "Test Description", price, quantity, sellerId);
     }
 
     public static Buyer CreateBuyer(string address = "Test Address", int id = 1)
