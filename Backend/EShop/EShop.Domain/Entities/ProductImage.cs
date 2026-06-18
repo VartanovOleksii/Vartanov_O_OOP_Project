@@ -1,4 +1,4 @@
-namespace EShop.Domain.Entities;
+﻿namespace EShop.Domain.Entities;
 
 public class ProductImage : Entity
 {
@@ -8,15 +8,6 @@ public class ProductImage : Entity
     public string ImagePath { get; private set; } = string.Empty;
 
     public string? ImageAltText { get; private set; }
-
-    private ProductImage() { }
-
-    public ProductImage(int productId, string imagePath, string? imageAltText = null)
-    {
-        ProductId = productId;
-        ImagePath = imagePath;
-        ImageAltText = imageAltText;
-    }
 
     public override bool IsValid()
     {

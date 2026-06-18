@@ -1,6 +1,6 @@
 namespace EShop.Domain.DTOs;
 
-public class OrderExportDto
+public class OrderDto
 {
     public int Id { get; set; }
     public int BuyerId { get; set; }

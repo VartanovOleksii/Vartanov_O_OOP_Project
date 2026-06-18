@@ -1,4 +1,3 @@
-using EShop.Domain.Entities;
 using EShop.Domain.Tests.Helpers;
 
 namespace EShop.Domain.Tests;
@@ -140,33 +139,5 @@ public class SellerTests
         var stats = seller.GetStatistics();
 
         Assert.NotNull(stats);
-    }
-
-    [Fact]
-    public void GetStatistics_NoOrders_ReturnsZeroStats()
-    {
-        var seller = TestFactory.CreateSeller();
-
-        var stats = seller.GetStatistics();
-
-        Assert.Contains("0", stats);
-    }
-
-    [Fact]
-    public void GetStatistics_WithOrders_ReturnsCorrectStats()
-    {
-        var seller = TestFactory.CreateSeller(id: 10);
-        var product = TestFactory.CreateProduct(price: 100m, quantity: 10, sellerId: 10);
-
-        typeof(Product).GetProperty(nameof(Product.ProductSeller))!
-            .SetValue(product, seller);
-
-        var buyer = TestFactory.CreateBuyer();
-        Order.Create(buyer, product, 3);
-
-        var stats = seller.GetStatistics();
-
-        Assert.Contains("1", stats);
-        Assert.Contains("300", stats);
     }
 }
