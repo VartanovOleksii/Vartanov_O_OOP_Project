@@ -7,6 +7,14 @@ public class Buyer : AuthorizedUser, IBuyerActions
     public List<CartItem> Cart { get; private set; } = [];
     public List<Order> OrderHistory { get; private set; } = [];
 
+    public Buyer() { }
+
+    public Buyer(string userId, string userAddress)
+    {
+        UserId = userId;
+        UserAddress = userAddress;
+    }
+
     public void AddToCart(Product product, int quantity)
     {
         if (quantity <= 0)
