@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="EShop.Domain.DTOs.OrderDto">
+  <Class Name="EShop.Domain.DTOs.OrderExportDto">
     <Position X="13.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>OAACAAAAAAAAAAAAAAAAAAAAAQAAQQAAAAAAgAAAAAA=</HashCode>
-      <FileName>DTOs\OrderDto.cs</FileName>
+      <FileName>DTOs\OrderExportDto.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EShop.Domain.DTOs.ProductDto">
+  <Class Name="EShop.Domain.DTOs.ProductExportDto">
     <Position X="13.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAQAgAAAAAAAAAAQAAAAAAQAAAAAAgAAAAAA=</HashCode>
-      <FileName>DTOs\ProductDto.cs</FileName>
+      <FileName>DTOs\ProductExportDto.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EShop.Domain.Entities.AuthorizedUser">
@@ -24,7 +24,7 @@
   <Class Name="EShop.Domain.Entities.Buyer">
     <Position X="2.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAAAAgAAAAAAAgAAAAAAAAAAAgAACA=</HashCode>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAgAACA=</HashCode>
       <FileName>Entities\Buyer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -32,14 +32,14 @@
   <Class Name="EShop.Domain.Entities.CartItem">
     <Position X="5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAACAAAAAAAAAAAAEgAAAAAAQAAAAAEAAAAAAAAAAA=</HashCode>
+      <HashCode>EAAACAAAAAAAAAAAEEgAAAAAAQAAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Entities\CartItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EShop.Domain.Entities.Entity">
     <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAgAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAgAgAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Entity.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -60,7 +60,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="EShop.Domain.Entities.ProductImage">
-    <Position X="0.5" Y="2.75" Width="1.5" />
+    <Position X="0.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAAAAAAAAAAAAAAAgAAIAAAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\ProductImage.cs</FileName>
@@ -69,7 +69,7 @@
   <Class Name="EShop.Domain.Entities.Seller">
     <Position X="0.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAQAAAAAAAoIQAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>AAAAAAAAAAQAAAAAAAIIQAAAAAAAAAAAIAAAAAAAAAQ=</HashCode>
       <FileName>Entities\Seller.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -94,6 +94,36 @@
       <HashCode>AAAAAAAAAAAAAAAAIAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Ports\JsonDataPort.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EShop.Domain.Events.ProductEventArgs">
+    <Position X="12" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Events\ProductEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EShop.Domain.Models.Guest">
+    <Position X="13.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Models\Guest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EShop.Domain.Services.ApplicationUser">
+    <Position X="12" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EShop.Domain.Services.CustomPasswordValidator">
+    <Position X="13.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Services\CustomPasswordValidator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Interface Name="EShop.Domain.Interfaces.IBuyerActions">
     <Position X="8.25" Y="0.5" Width="1.5" />
@@ -109,5 +139,19 @@
       <FileName>Interfaces\ISellerActions.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="EShop.Domain.Interfaces.IJsonDataPort&lt;T&gt;">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IJsonDataPort.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="EShop.Domain.Models.UserRole">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Models\UserRole.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
