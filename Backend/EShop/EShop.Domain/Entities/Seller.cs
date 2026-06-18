@@ -1,10 +1,19 @@
-﻿using EShop.Domain.Interfaces;
+using EShop.Domain.Interfaces;
 
 namespace EShop.Domain.Entities;
 
 public class Seller : AuthorizedUser, ISellerActions
 {
     public List<Product> Products { get; private set; } = [];
+    public List<Order> SoldOrders { get; private set; } = [];
+
+    public Seller() { }
+
+    public Seller(string userId, string userAddress)
+    {
+        UserId = userId;
+        UserAddress = userAddress;
+    }
 
     public void AddProduct(string name, string description, decimal price, int quantity)
     {
@@ -28,8 +37,9 @@ public class Seller : AuthorizedUser, ISellerActions
 
     public string GetStatistics()
     {
-        int totalStock = Products.Sum(p => p.ProductQuantity);
-        return $"Total products: {Products.Count}, Total stock: {totalStock}";
+        int orderCount = SoldOrders.Count;
+        decimal totalRevenue = SoldOrders.Sum(o => o.OrderTotalPrice);
+        return $"Total orders: {orderCount}, Total revenue: {totalRevenue:C2}";
     }
 
     public void UpdateStock(int productId, int newQuantity)

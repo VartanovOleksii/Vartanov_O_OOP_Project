@@ -22,7 +22,7 @@ public class MappersTests
     [Fact]
     public void ProductMapper_ToEntity_MapsAllFields()
     {
-        var dto = new ProductDto
+        var dto = new ProductExportDto
         {
             Id = 1,
             Name = "Widget",
@@ -71,7 +71,7 @@ public class MappersTests
     [Fact]
     public void OrderMapper_ToEntity_MapsAllFields()
     {
-        var dto = new OrderDto
+        var dto = new OrderExportDto
         {
             Id = 1,
             BuyerId = 2,

@@ -1,18 +1,16 @@
-using Microsoft.Extensions.Hosting;
 using System.Text.Json;
+using EShop.Domain.Interfaces;
 
 namespace EShop.Domain.Ports;
 
-public class JsonDataPort<T>
+public class JsonDataPort<T> : IJsonDataPort<T>
 {
     public string Export(IEnumerable<T> collection)
     {
         if (collection == null)
             return "[]";
 
-        string json = System.Text.Json.JsonSerializer.Serialize(collection);
-
-        return json;
+        return JsonSerializer.Serialize(collection);
     }
 
     public IEnumerable<T> Import(string json)
