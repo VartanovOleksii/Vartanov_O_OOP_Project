@@ -38,12 +38,13 @@ public class Order : Entity
             ProductId = product.Id,
             OrderProduct = product,
             OrderQuantity = quantity,
-            OrderUnitPrice = product.ProductPrice,  // ← снимок цены
+            OrderUnitPrice = product.ProductPrice,
             OrderDate = DateTime.UtcNow
         };
 
         product.DecreaseQuantity(quantity);
         buyer.OrderHistory.Add(order);
+        product.ProductSeller?.SoldOrders.Add(order);
 
         return order;
     }
