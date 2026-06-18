@@ -29,11 +29,9 @@ internal static class TestFactory
         return s;
     }
 
-    public static ProductImage CreateProductImage(string path = "images/test.jpg")
+    public static ProductImage CreateProductImage(string path = "images/test.jpg", int productId = 1)
     {
-        var img = (ProductImage)Activator.CreateInstance(typeof(ProductImage), nonPublic: true)!;
-        typeof(ProductImage).GetProperty(nameof(ProductImage.ImagePath))!.SetValue(img, path);
-        return img;
+        return new ProductImage(productId, path);
     }
 
     public static CartItem CreateCartItem(int quantity = 1)
