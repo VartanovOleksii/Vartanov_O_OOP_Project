@@ -12,6 +12,20 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
+const string FrontendCorsPolicy = "FrontendCorsPolicy";
+
+// Allow the SvelteKit dev server (D:\KhAI\CourseWork\Frontend) to call the API.
+// JWT travels in the Authorization header, so AllowCredentials() is not needed.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(FrontendCorsPolicy, policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var connString = builder.Configuration.GetConnectionString("Default");
 
 // EF Core + SQLite
@@ -92,6 +106,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseCors(FrontendCorsPolicy);
 
 app.UseAuthentication();
 app.UseAuthorization();
