@@ -1,3 +1,4 @@
+using System.Globalization;
 using EShop.Domain.Interfaces;
 
 namespace EShop.Domain.Entities;
@@ -39,7 +40,8 @@ public class Seller : AuthorizedUser, ISellerActions
     {
         int orderCount = SoldOrders.Count;
         decimal totalRevenue = SoldOrders.Sum(o => o.OrderTotalPrice);
-        return $"Total orders: {orderCount}, Total revenue: {totalRevenue:C2}";
+        var usd = CultureInfo.GetCultureInfo("en-US");
+        return $"Total orders: {orderCount}, Total revenue: {totalRevenue.ToString("C2", usd)}";
     }
 
     public void UpdateStock(int productId, int newQuantity)
