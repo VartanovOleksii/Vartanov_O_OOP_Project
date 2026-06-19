@@ -4,3 +4,11 @@
 *.suo
 bin/
 obj/
+
+# Local SQLite database (schema is recreated from EF migrations on startup)
+*.db
+*.db-shm
+*.db-wal
+
+# Read-only reference frontend template (not part of the deliverable)
+alexei-ecommerce-frontend-main/
