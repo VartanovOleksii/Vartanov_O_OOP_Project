@@ -10,6 +10,8 @@ public class CartItem : Entity
 
     public int CartQuantity { get; private set; }
 
+    private CartItem() { }
+
     public void IncreaseQuantity(int amount) => CartQuantity += amount;
 
     public override bool IsValid()
