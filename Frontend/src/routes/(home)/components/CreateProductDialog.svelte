@@ -21,6 +21,7 @@
     let description = $state("");
     let price = $state(0);
     let quantity = $state(0);
+    let imagePath = $state("");
     let saving = $state(false);
 
     function reset() {
@@ -28,6 +29,18 @@
         description = "";
         price = 0;
         quantity = 0;
+        imagePath = "";
+    }
+
+    // Turn user input into a usable web path: keep external URLs as-is, but for
+    // local files convert backslashes to "/" and ensure a leading slash, e.g.
+    // "products\foo.png" -> "/products/foo.png".
+    function normalizeImagePath(value) {
+        const v = value.trim();
+        if (!v) return "";
+        if (/^https?:\/\//i.test(v)) return v;
+        const cleaned = v.replace(/\\/g, "/");
+        return cleaned.startsWith("/") ? cleaned : `/${cleaned}`;
     }
 
     async function save() {
@@ -47,8 +60,25 @@
                 price: Number(price),
                 quantity: Number(quantity)
             });
+            let product = res.data;
+
+            // Optionally attach an image. The backend stores the path as-is, so
+            // this can be a local "/products/foo.jpg" or an external URL.
+            const img = normalizeImagePath(imagePath);
+            if (img) {
+                try {
+                    const withImage = await api.post(`/products/${product.id}/images`, {
+                        imagePath: img,
+                        altText: name.trim()
+                    });
+                    product = withImage.data; // ProductResponse including the image
+                } catch (imgErr) {
+                    toast.error(imgErr?.response?.data?.error ?? "Product created, but the image could not be attached");
+                }
+            }
+
             toast.success("Product created");
-            oncreated?.(res.data);
+            oncreated?.(product);
             reset();
             open = false;
         } catch (error) {
@@ -85,6 +115,13 @@
                 <div class="grid items-center gap-1.5">
                     <Label for="quantity">Quantity</Label>
                     <Input id="quantity" type="number" min="0" bind:value={quantity} />
+                </div>
+            </div>
+            <div class="grid w-full items-center gap-1.5">
+                <Label for="imagePath">Image URL (optional)</Label>
+                <Input id="imagePath" bind:value={imagePath} placeholder="/products/my-item.jpg or https://…" />
+                <div class="text-xs text-muted-foreground">
+                    A local path under <code>Frontend/static/products/</code> or an external image URL. Leave empty for a placeholder icon.
                 </div>
             </div>
         </div>

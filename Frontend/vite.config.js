@@ -19,6 +19,15 @@ export default defineConfig({
         }),
         tailwindcss()
     ],
+    server: {
+        watch: {
+            // Don't watch the static assets folder. Image files dropped here can
+            // be briefly locked by other apps (e.g. an image viewer), which would
+            // otherwise crash Vite's file watcher (EBUSY). Static files are still
+            // served regardless of watching.
+            ignored: ['**/static/**']
+        }
+    },
     test: {
         expect: {requireAssertions: true},
         projects: [

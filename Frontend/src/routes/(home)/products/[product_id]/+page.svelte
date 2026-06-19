@@ -94,17 +94,22 @@
             <!-- Gallery -->
             <div class="flex flex-col gap-4">
                 <AspectRatio ratio={1} class="overflow-hidden rounded-xl border bg-muted">
-                    {#if primaryImage}
-                        <img
-                            src={primaryImage.imagePath}
-                            alt={primaryImage.altText ?? product.name}
-                            class="h-full w-full object-cover"
-                        />
-                    {:else}
+                    <div class="relative h-full w-full">
+                        <!-- Fallback icon sits behind the image; if the image is
+                             missing or fails to load it stays visible (instead of
+                             showing the browser's broken-image + alt text). -->
                         <div class="flex h-full w-full items-center justify-center text-muted-foreground">
                             <PackageIcon class="size-20"/>
                         </div>
-                    {/if}
+                        {#if primaryImage}
+                            <img
+                                src={primaryImage.imagePath}
+                                alt={primaryImage.altText ?? product.name}
+                                class="absolute inset-0 h-full w-full object-cover"
+                                onerror={(e) => e.currentTarget.remove()}
+                            />
+                        {/if}
+                    </div>
                 </AspectRatio>
                 {#if images.length > 1}
                     <div class="grid grid-cols-4 gap-3">
@@ -114,6 +119,7 @@
                                     src={image.imagePath}
                                     alt={image.altText ?? product.name}
                                     class="h-full w-full object-cover"
+                                    onerror={(e) => e.currentTarget.remove()}
                                 />
                             </AspectRatio>
                         {/each}
