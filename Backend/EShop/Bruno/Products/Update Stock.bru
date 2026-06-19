@@ -1,0 +1,25 @@
+meta {
+  name: Update Stock
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{baseUrl}}/api/products/:id/stock
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{sellerToken}}
+}
+
+params:path {
+  id: 1
+}
+
+body:json {
+  {
+    "newQuantity": 15
+  }
+}

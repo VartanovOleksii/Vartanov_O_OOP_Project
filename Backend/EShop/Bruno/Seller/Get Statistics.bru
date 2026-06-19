@@ -1,0 +1,15 @@
+meta {
+  name: Get Statistics
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/seller/statistics
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{sellerToken}}
+}

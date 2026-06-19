@@ -1,0 +1,24 @@
+meta {
+  name: Login Seller
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/auth/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "seller1",
+    "password": "Seller123!"
+  }
+}
+
+script:post-response {
+  if (res.status === 200) {
+    bru.setEnvVar("sellerToken", res.body.token);
+  }
+}

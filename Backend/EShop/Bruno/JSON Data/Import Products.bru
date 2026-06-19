@@ -1,0 +1,23 @@
+meta {
+  name: Import Products (JSON)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/json/products
+  body: text
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{sellerToken}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:text {
+  [{"Id":0,"Name":"Imported Phone","Description":"Smartphone","Price":9999.00,"Quantity":5,"SellerId":1}]
+}

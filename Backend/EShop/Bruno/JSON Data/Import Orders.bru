@@ -1,0 +1,23 @@
+meta {
+  name: Import Orders (JSON)
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/json/orders
+  body: text
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{buyerToken}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:text {
+  []
+}

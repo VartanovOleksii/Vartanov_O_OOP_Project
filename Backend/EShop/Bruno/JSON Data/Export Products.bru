@@ -1,0 +1,15 @@
+meta {
+  name: Export Products (JSON)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/json/products
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{sellerToken}}
+}

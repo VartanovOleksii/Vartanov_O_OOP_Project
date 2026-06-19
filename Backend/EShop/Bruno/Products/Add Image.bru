@@ -1,0 +1,26 @@
+meta {
+  name: Add Product Image
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/api/products/:id/images
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{sellerToken}}
+}
+
+params:path {
+  id: 1
+}
+
+body:json {
+  {
+    "imagePath": "images/laptop-asus.jpg",
+    "altText": "ASUS Laptop front view"
+  }
+}
